@@ -42,12 +42,12 @@
             prev = this._intervals[ i ];
             last = this._intervals[ i + 1 ];
             
-            if ( prev === undefined ) {
-                prev = Date.now();
-            }
-            
             if ( last === undefined ) {
                 last = Date.now();
+            }
+            
+            if ( prev === undefined ) {
+                prev = last;
             }
         
             time += last - prev;
