@@ -35,16 +35,22 @@
     Stopwatch.prototype.getTime = function() {
         var i,
             time = 0,
+            prev,
             last;
         
         for ( i = 0; i < this._intervals_length; i += 2 ) {
+            prev = this._intervals[ i ];
             last = this._intervals[ i + 1 ];
+            
+            if ( prev === undefined ) {
+                prev = Date.now();
+            }
             
             if ( last === undefined ) {
                 last = Date.now();
             }
         
-            time += last - this._intervals[ i ];
+            time += last - prev;
         }
         
         return time;
